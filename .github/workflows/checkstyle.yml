@@ -1,9 +1,12 @@
 name: Checkstyle Linter
 
 on:
+  push:
+        branches:
+        - main
   pull_request:
     branches:
-      - main
+        - main
 jobs:
   checkstyle:
     runs-on: ubuntu-latest
