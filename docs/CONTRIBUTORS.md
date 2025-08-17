@@ -208,7 +208,7 @@ Each workflow is triggered automatically on **push** or **pull request** to the 
 
 In Actions, after each workflow run, generated artifacts (e.g., coverage reports) are available for download. Here's a screenshot showing the artifacts section:
 
-![Pipeline Artifacts](docs/assets/artifacts.png)
+![Pipeline Artifacts](assets/artifacts.png)
 
 ---
 
