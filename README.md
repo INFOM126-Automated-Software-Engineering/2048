@@ -10,3 +10,6 @@ This repository contains the implementation of the 2048 game. The game is develo
 - **Down Arrow**: Move tiles down
 - **Left Arrow**: Move tiles left
 - **Right Arrow**: Move tiles right
+
+
+This is a comment to check that deploy only happens when we push to the main branch
