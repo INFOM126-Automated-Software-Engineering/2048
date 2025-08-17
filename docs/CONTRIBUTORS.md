@@ -46,12 +46,27 @@ We use GitHub Issues to track bugs, enhancements, and documentation tasks. Here'
         - `docs/issue-85`
 
 ### Workflow
-1. Create an issue.
+1. Create an issue (please refer to [Issue Templates & Reporting Guidelines](#issue-templates--reporting-guidelines))
 2. Create a branch from `main` using the naming convention.
 3. Commit changes with clear messages referencing the issue (e.g., `Fixes issue-03`).
 4. Open a Pull Request and link it to the issue.
-5. Once reviewed and approved, merge into `main`.
+5. **Merge conditions:**
+    - All required checks (build, tests, style) pass in CI.
+    - At least **one approving review** from another contributor.
+    - Branch is up-to-date with `main` and has no merge conflicts.
+    - Merge method: **Squash and merge** preferred to keep history clean.
+6. Once reviewed and approved, Youhouu! merge into `main`.
 
+### Main Branch Protection Rules
+The `main` branch is protected to enforce these conventions:
+- **No direct pushes** ; ALL changes go through Pull Requests.
+- **Require status checks to pass** before merging:
+    - Build and unit tests.
+    - Lint/style checks.
+- **Require at least one review** from someone other than the author.
+- **Require branches to be up-to-date** with `main` before merging.
+- **Enforce commit message conventions** through CI checks.
+- **Disallow force pushes** and branch deletions for `main`.
 ### Good First Issues
 Check the `good first issue` label if you're new and want to contribute!
 
