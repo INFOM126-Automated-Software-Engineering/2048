@@ -5,6 +5,10 @@ on:
     branches:
       - main
 
+  push:
+    branches:
+      - main
+
 jobs:
   telemetry:
     name: Collect Build and System Telemetry
