@@ -63,7 +63,7 @@ jobs:
           ps aux --sort=-%cpu | head -n 6 >> telemetry_report.txt
 
       - name: Upload Telemetry Report
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: telemetry-report
           path: telemetry_report.txt
