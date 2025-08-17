@@ -4,7 +4,6 @@ on:
   pull_request:
     branches:
       - main
-
   push:
     branches:
       - main
@@ -67,3 +66,14 @@ jobs:
         with:
           name: telemetry-report
           path: telemetry_report.txt
+
+      - name: Generate JaCoCo Coverage Report
+        run: mvn test jacoco:report
+
+      - name: Upload JaCoCo XML Report
+        uses: actions/upload-artifact@v4
+        with:
+          name: jacoco-report
+          path: target/site/jacoco/jacoco.xml
+
+
