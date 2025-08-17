@@ -1,0 +1,65 @@
+name: Telemetry
+
+on:
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  telemetry:
+    name: Collect Build and System Telemetry
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      actions: write
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up Java
+        uses: actions/setup-java@v3
+        with:
+          distribution: 'temurin'
+          java-version: '11'
+
+      - name: Install system tools
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y maven sysstat lm-sensors
+
+      - name: Run Maven Tests and Measure Time
+        run: |
+          echo "=== Telemetry Report ===" > telemetry_report.txt
+          TEST_START=$(date +%s)
+          echo "Test Start Time: $TEST_START" >> telemetry_report.txt
+          mvn test || echo "Tests failed" >> telemetry_report.txt
+          TEST_END=$(date +%s)
+          echo "Test End Time: $TEST_END" >> telemetry_report.txt
+          echo "Test Duration: $((TEST_END - TEST_START)) seconds" >> telemetry_report.txt
+
+      - name: Collect System Metrics
+        run: |
+          echo "CPU Info:" >> telemetry_report.txt
+          lscpu >> telemetry_report.txt
+
+          echo "Memory Usage:" >> telemetry_report.txt
+          free -h >> telemetry_report.txt
+
+          echo "Disk Usage:" >> telemetry_report.txt
+          df -h >> telemetry_report.txt
+
+          echo "Active Threads:" >> telemetry_report.txt
+          ps -eo nlwp | tail -n +2 | awk '{ num_threads += $1 } END { print "Total Threads:", num_threads }' >> telemetry_report.txt
+
+          echo "CPU Temperature (if available):" >> telemetry_report.txt
+          sensors || echo "sensors command not supported" >> telemetry_report.txt
+
+          echo "Top 5 CPU-consuming processes:" >> telemetry_report.txt
+          ps aux --sort=-%cpu | head -n 6 >> telemetry_report.txt
+
+      - name: Upload Telemetry Report
+        uses: actions/upload-artifact@v3
+        with:
+          name: telemetry-report
+          path: telemetry_report.txt
