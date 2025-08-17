@@ -9,6 +9,7 @@
 - [Writing Tests](#writing-tests)
 - [Release Policy](#release-policy)
 - [Continuous Integration](#continuous-integration)
+- [Code of conduct](#code-of-conduct)
 - [Contact](#contact)
 ---
 
@@ -211,6 +212,11 @@ In Actions, after each workflow run, generated artifacts (e.g., coverage reports
 ![Pipeline Artifacts](assets/artifacts.png)
 
 ---
+## Code of Conduct
+
+Please note that this project follows a [Code of Conduct](CodeOfConduct.md).  
+By participating in this project, you agree to uphold its terms.
+--- 
 
 ## Contact
 
