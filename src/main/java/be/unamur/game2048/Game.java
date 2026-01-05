@@ -27,6 +27,7 @@ public class Game {
             f.pack();
             f.setLocationRelativeTo(null);
             f.setVisible(true);
+            // fix something
         });
     }
 }
