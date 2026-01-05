@@ -34,6 +34,7 @@ public class GridHelper {
         Tile[] colTiles = grid.getCol(col);
         return GridHelper.lineEqual(expectedValues, colTiles);
     }
+    // add something
 
     private static boolean lineEqual(Integer[] expectedValues, Tile[] lineTiles) {
         Object[] expectedTiles = Arrays.stream(expectedValues).map(value -> {
